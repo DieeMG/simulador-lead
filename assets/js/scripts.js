@@ -25,13 +25,14 @@ parrafo.textContent = 'Elige el origen del LEAD';
 
 inicio.addEventListener('change', firstSelect);
 
+resultadoLlamada.classList.add("d-none");
+resultadoLlamada.classList.remove("d-block");
+
 function firstSelect() {
 
     let eleccion = inicio.value;
 
-    resultadoLlamada.classList.add("d-none");
-    resultadoLlamada.classList.remove("d-block");
-    
+
     if (eleccion) {
 
         //inicio.classList.remove("d-block");
