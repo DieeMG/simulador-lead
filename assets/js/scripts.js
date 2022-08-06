@@ -25,13 +25,9 @@ parrafo.textContent = 'Elige el origen del LEAD';
 
 inicio.addEventListener('change', firstSelect);
 
-resultadoLlamada.classList.add("d-none");
-resultadoLlamada.classList.remove("d-block");
-
 function firstSelect() {
 
     let eleccion = inicio.value;
-
 
     if (eleccion) {
 
@@ -43,12 +39,16 @@ function firstSelect() {
         resultadoLlamada.classList.remove("d-none");
         resultadoLlamada.classList.add("d-block");
 
-    } else {
+    } if (eleccion == '') {
 
         parrafo.textContent = 'Elige el origen del Lead';
 
         resultadoLlamada.classList.add("d-none");
         resultadoLlamada.classList.remove("d-block");
+
+        
+        leadConectadoForm.classList.remove("d-block");
+        leadConectadoForm.classList.add("d-none");
 
     }
 }
@@ -173,7 +173,7 @@ function llamadoForm() {
 
                             if (eleccionEnvioDocumentacion == 'completo') {
 
-                                parrafo.textContent = 'Genial';
+                                parrafo.textContent = 'Continuar con el proceso';
 
                             } if (eleccionEnvioDocumentacion == 'incompleto') {
 
