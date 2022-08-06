@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Lead</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="py-2 text-center shadow-sm">
+        <h1>Simulador LEAD</h1>
+    </header>
+
+    <main class="container">
+        <div class="row justify-content-center py-5 my-5">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form action="">
+                    <div class="row gap-4">
+                        <div class="col-12">
+                            <h5>Simulador de ruta a seguir con un LEAD</h5>
+                            <p id="simuladorTexto"></p>
+                        </div>
+
+                        <div class="col-12">
+                            <select id="inicio" class="form-select d-block" aria-label="Default select example">
+                                <option value="" selected>Origen del Lead</option>
+                                <option value="landing">Landing</option>
+                                <option value="base_estatica">Base estática</option>
+                                <option value="formulario">Formulario</option>
+                                <option value="redes">Redes sociales</option>
+                                <option value="carga_manual">Carga manual</option>
+                            </select>
+
+                        </div>
+
+                        <div id="resultado_llamada" class="col-12 d-none">
+                            <h4>¿Cual fue el resultado de la llamada?</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultado_llamada_form" value="conectado" id="conectado">
+                                <label class="form-check-label" for="conectado">
+                                    LEAD conectado
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultado_llamada_form" value="mensaje_voz" id="mensaje_voz">
+                                <label class="form-check-label" for="mensaje_voz">
+                                    Dejo un mensaje en vivo o de voz
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultado_llamada_form" value="numero_incorrecto" id="numero_incorrecto">
+                                <label class="form-check-label" for="numero_incorrecto">
+                                    Número incorrecto
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultado_llamada_form" value="ocupado" id="ocupado">
+                                <label class="form-check-label" for="ocupado">
+                                    Ocupado
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultado_llamada_form" value="sin_respuesta" id="sin_respuesta">
+                                <label class="form-check-label" for="sin_respuesta">
+                                    Sin respuesta
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- LEAD conectado  -->
+
+                        <div id="lead_conectado_form" class="col-12 d-none text-danger">
+                            <h4>Luego de el primer contacto ¿En que estado se encuentra el LEAD?</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="luego_primer_contacto" value="contactado" id="lead_contactado">
+                                <label class="form-check-label" for="lead_contactado">
+                                    LEAD Contactado
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="luego_primer_contacto" value="no_califica" id="no_califica">
+                                <label class="form-check-label" for="no_califica">
+                                    No califica
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="luego_primer_contacto" value="recontactar" id="recontactar">
+                                <label class="form-check-label" for="recontactar">
+                                    Recontactar
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="luego_primer_contacto" value="no_contesta" id="no_contesta">
+                                <label class="form-check-label" for="no_contesta">
+                                    No contesta
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Dejo un mensaje en vivo o de voz -->
+
+                        <div id="mensaje_voz_form" class="col-12 d-none text-warning">
+                            <h4>Si dejó un mensaje de voz o en vivo</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dejo_mensaje" value="rellamar" id="rellamar">
+                                <label class="form-check-label" for="rellamar">
+                                    Rellamar
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dejo_mensaje" value="decartado" id="decartado">
+                                <label class="form-check-label" for="decartado">
+                                    Descartado
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Motivo Lead Descartado -->
+
+                        <div id="motivo_form" class="col-12 d-none text-primary">
+                            <h4 id="lead_descartado">Motivo</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="no_responde" id="motivo_dejo_responder">
+                                <label class="form-check-label" for="motivo_dejo_responder">
+                                    Dejó de responder
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="no_cumple_requisitos" id="motivo_no_cumple_requisitos">
+                                <label class="form-check-label" for="motivo_no_cumple_requisitos">
+                                    No cumple los requistiso
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="proxima_version" id="motivo_proxima_version">
+                                <label class="form-check-label" for="motivo_proxima_version">
+                                    Próxima version
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="personales" id="motivo_personales">
+                                <label class="form-check-label" for="motivo_personales">
+                                    Motivos personales
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="precio" id="motivo_precio">
+                                <label class="form-check-label" for="motivo_precio">
+                                    Precio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="horario" id="motivo_horario">
+                                <label class="form-check-label" for="motivo_horario">
+                                    Horario
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="modalidad" id="motivo_modalidad">
+                                <label class="form-check-label" for="motivo_modalidad">
+                                    Modalidad de cursado
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="otro_programa" id="motivo_incripto_en_otro">
+                                <label class="form-check-label" for="motivo_incripto_en_otro">
+                                    Se inscribió en otro programa
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="motivo_descarte" value="no_le_interesa" id="motivo_no_le_interesa">
+                                <label class="form-check-label" for="motivo_no_le_interesa">
+                                    No le interesa
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Sin respuesta LEAD -->
+
+                        <div id="sin_respuesta_form" class="col-12 d-none text-secondary">
+                            <h4>¿Cuantas veces se llamó?</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="nroLlamados" value="1" id="cantidad_llamados_1">
+                                <label class="form-check-label" for="cantidad_llamados_1">
+                                    1
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="nroLlamados" value="2" id="cantidad_llamados_2">
+                                <label class="form-check-label" for="cantidad_llamados_2">
+                                    2
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="nroLlamados" value="3" id="cantidad_llamados_3">
+                                <label class="form-check-label" for="cantidad_llamados_3">
+                                    3
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="nroLlamados" value="4" id="cantidad_llamados_4">
+                                <label class="form-check-label" for="cantidad_llamados_4">
+                                    4
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Contactado -->
+
+                        <div id="contacto_exitoso_form" class="col-12 d-none text-warning">
+                            <h5>Etapa del negocio</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="etapa_negocio" value="analizando" id="etapa_analizando_propuesta">
+                                <label class="form-check-label" for="etapa_analizando_propuesta">
+                                    Analizando propuesta
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="etapa_negocio" value="oportunidad" id="etapa_oportunidad_de_venta">
+                                <label class="form-check-label" for="etapa_oportunidad_de_venta">
+                                    Oportunidad de venta
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="etapa_negocio" value="envio_documentacion" id="etapa_envio_documentacion">
+                                <label class="form-check-label" for="etapa_envio_documentacion">
+                                    Envio de documentación
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="etapa_negocio" value="preinscripto" id="etapa_preinscripto">
+                                <label class="form-check-label" for="etapa_preinscripto">
+                                    Preinscripto
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="etapa_negocio" value="matriculado" id="etapa_matriculado">
+                                <label class="form-check-label" for="etapa_matriculado">
+                                    Matriculado
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="etapa_negocio" value="descartado" id="etapa_decartado">
+                                <label class="form-check-label" for="etapa_decartado">
+                                    Descartado
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Docuemntación -->
+
+                        <div id="estado_envio_documentacion" class="col-12 d-none text-danger">
+                            <h5>El alumno ¿Envió la documentación?</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="envio_documentacion" value="completo" id="envio_todo">
+                                <label class="form-check-label" for="envio_todo">
+                                    Envió todo
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="envio_documentacion" value="incompleto" id="envio_incompleto">
+                                <label class="form-check-label" for="envio_incompleto">
+                                    Envió incompleto o incorrecto
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="/assets/js/scripts.js"></script>
+</body>
+
+</html>
