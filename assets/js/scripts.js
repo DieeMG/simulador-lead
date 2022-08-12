@@ -164,7 +164,7 @@ function llamadoForm() {
 
                     } if (eleccionContactoExitoso == 'analizando' ) {
 
-                        exito = 'Si el lead se encuentra analizando la propuesta es necesario AGENDAR UNA NUEVA REUNIÓN O LLAMADA.';
+                        exito = 'Si el LEAD se encuentra analizando la propuesta es necesario AGENDAR UNA NUEVA REUNIÓN O LLAMADA.';
 
                         parrafo.textContent = exito;
                     
