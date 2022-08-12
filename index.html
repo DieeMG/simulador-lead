@@ -30,8 +30,8 @@
                         </div>
 
                         <div class="col-12">
-                            <select id="inicio" class="form-select d-block" aria-label="Default select example">
-                                <option value="" selected>Origen del Lead</option>
+                            <select id="inicio" class="form-select d-block" aria-label="Origen del Lead">
+                                <option value="origen" selected>Origen del LEAD</option>
                                 <option value="landing">Landing</option>
                                 <option value="base_estatica">Base estática</option>
                                 <option value="formulario">Formulario</option>
@@ -271,14 +271,26 @@
                                 </label>
                             </div>
                         </div>
+
+                        <div class="col-12 text-end">
+                            <input class="btn btn-dark" type="button" onclick="resetForm()" value="Reiniciar Simulador">
+                        </div>
+
                     </div>
+                    
+
                 </form>
 
             </div>
         </div>
     </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- ---------- Local ----------- -->
+    <!-- <script src="/assets/js/scripts.js"></script> -->
+    <!-- ---------- github ---------- -->
     <script src="/simulador-lead/assets/js/scripts.js"></script>
+    
 </body>
 
 </html>

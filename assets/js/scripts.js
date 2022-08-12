@@ -39,23 +39,11 @@ function firstSelect() {
         resultadoLlamada.classList.remove("d-none");
         resultadoLlamada.classList.add("d-block");
 
-    } if (eleccion == '') {
+    } if (eleccion == 'origen') {
 
-        parrafo.textContent = 'Elige el origen del Lead';
+        parrafo.textContent = 'Elige el origen del LEAD';
 
-    //reset 
-    motivoForm.classList.remove("d-block");
-    motivoForm.classList.add("d-none");
-    
-        resultadoLlamada.classList.add("d-none");
-        resultadoLlamada.classList.remove("d-block");
-
-        
-        contactoExitoso.classList.remove("d-block");
-        contactoExitoso.classList.add("d-none");
-
-        leadConectadoForm.classList.remove("d-block");
-        leadConectadoForm.classList.add("d-none");
+        resetForm();
 
     }
 }
@@ -556,3 +544,28 @@ function uncheckMotivo() {
         x[i].checked = false;
     }
 }
+
+function resetForm() {
+    const select = document.getElementById('inicio');
+
+// ✅ set select value
+select.value = 'origen';
+
+parrafo.textContent = 'Elige el origen del LEAD';
+
+//reset 
+motivoForm.classList.remove("d-block");
+motivoForm.classList.add("d-none");
+
+resultadoLlamada.classList.add("d-none");
+resultadoLlamada.classList.remove("d-block");
+
+contactoExitoso.classList.remove("d-block");
+contactoExitoso.classList.add("d-none");
+
+leadConectadoForm.classList.remove("d-block");
+leadConectadoForm.classList.add("d-none");
+
+nroLlamadosCol.classList.remove("d-block");
+nroLlamadosCol.classList.add("d-none");
+} 
