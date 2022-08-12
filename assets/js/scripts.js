@@ -43,10 +43,17 @@ function firstSelect() {
 
         parrafo.textContent = 'Elige el origen del Lead';
 
+    //reset 
+    motivoForm.classList.remove("d-block");
+    motivoForm.classList.add("d-none");
+    
         resultadoLlamada.classList.add("d-none");
         resultadoLlamada.classList.remove("d-block");
 
         
+        contactoExitoso.classList.remove("d-block");
+        contactoExitoso.classList.add("d-none");
+
         leadConectadoForm.classList.remove("d-block");
         leadConectadoForm.classList.add("d-none");
 
@@ -96,6 +103,8 @@ function llamadoForm() {
     /* =============================== */
 
     uncheckNroLlamados();
+    uncheckEtapaNegocio();
+    uncheckMotivo();
 
 
 
@@ -126,17 +135,21 @@ function llamadoForm() {
 
             envioDocumentacionForm.classList.remove("d-block");
             envioDocumentacionForm.classList.add("d-none");
-
+            motivoForm.classList.remove("d-block");
+            motivoForm.classList.add("d-none");
 
 
             uncheckEtapaNegocio();
             uncheckNroLlamados();
+            uncheckMotivo();
 
             if (eleccionLeadConectado == 'contactado') {
 
                 contactoExitoso.classList.remove("d-none");
                 contactoExitoso.classList.add("d-block");
-
+                
+                motivoForm.classList.remove("d-block");
+                motivoForm.classList.add("d-none");
                 //uncheckEtapaNegocio();
 
                 envioDocumentacionForm.classList.remove("d-block");
@@ -182,12 +195,25 @@ function llamadoForm() {
                             }
                         }
 
+                    } if (eleccionContactoExitoso == 'descartado' ) {
+
+                        
+                        motivoForm.classList.remove("d-none");
+                        motivoForm.classList.add("d-block");
+
+                        parrafo.textContent = 'Elige un motivo para descartar el LEAD';
+
+
                     } else {
 
 
+                        uncheckMotivo();
                         uncheckEnvioDocumentacion();
                         envioDocumentacionForm.classList.remove("d-block");
                         envioDocumentacionForm.classList.add("d-none");
+
+                        motivoForm.classList.remove("d-block");
+                        motivoForm.classList.add("d-none");
 
                         switch (eleccionContactoExitoso) {
                             case 'analizando':
@@ -210,12 +236,6 @@ function llamadoForm() {
                             case 'matriculado':
 
                                 exito = 'Cierre de venta.';
-
-
-                                break;
-                            case 'descartado':
-
-                                exito = 'El LEAD fue decartado';
 
                                 break;
 
@@ -333,16 +353,6 @@ function mensajeVozForm() {
     //radio.checked = false;
 
     uncheckMotivo();
-
-    function uncheckMotivo() {
-        var x = document
-            .querySelectorAll('input[name="motivo_descarte"]');
-
-        for (var i = 0; i < x.length; i++) {
-            x[i].checked = false;
-        }
-    }
-
 
     if (eleccionVozForm == 'rellamar') {
 
@@ -484,6 +494,14 @@ function nroLlamados() {
 /*         Uncheck Function        */
 /* =============================== */
 
+function uncheckResultado() {
+    var x = document
+        .querySelectorAll('input[name="resultado_llamada_form"]');
+
+    for (var i = 0; i < x.length; i++) {
+        x[i].checked = false;
+    }
+}
 function uncheckDejoMensaje() {
     var x = document
         .querySelectorAll('input[name="dejo_mensaje"]');
@@ -530,3 +548,11 @@ function uncheckEnvioDocumentacion() {
     }
 }
 
+function uncheckMotivo() {
+    var x = document
+        .querySelectorAll('input[name="motivo_descarte"]');
+
+    for (var i = 0; i < x.length; i++) {
+        x[i].checked = false;
+    }
+}
