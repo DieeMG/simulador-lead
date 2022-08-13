@@ -60,6 +60,7 @@ function llamadoForm() {
     //reset 
     removeMotivo();
     removeContactoExitoso();
+    removeEnvioDocumentacionForm();
 
     /* ------ uncheck Conectado ------ */
 
@@ -94,7 +95,7 @@ function llamadoForm() {
             envioDocumentacionForm.classList.add("d-none"); */
 
             removeMotivo();
-
+            removeEnvioDocumentacionForm();
             uncheckEtapaNegocio();
             uncheckNroLlamados();
             uncheckMotivo();
@@ -104,7 +105,6 @@ function llamadoForm() {
                 addContactoExitoso();
                 
                 removeMotivo();
-
                 /* envioDocumentacionForm.classList.remove("d-block");
                 envioDocumentacionForm.classList.add("d-none"); */
 
